@@ -5,6 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ClassMitra — India's Tuition Management App</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+  <link rel="shortcut icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -85,7 +90,11 @@
     .nav-logo {
       display: flex;
       align-items: center;
-      gap: 10px
+      gap: 10px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0;
     }
 
     .nav-logo-mark {
@@ -1276,6 +1285,15 @@
       object-fit: contain;
     }
 
+    .footer-brand-btn {
+      display: block;
+      border: none;
+      background: none;
+      padding: 0;
+      cursor: pointer;
+      text-align: left;
+    }
+
     .footer-tagline {
       font-size: 12px;
       font-weight: 400;
@@ -1614,10 +1632,10 @@
 <body>
   <!-- NAV -->
   <nav class="nav">
-    <div class="nav-logo">
+    <button class="nav-logo" id="logoHomeTop" aria-label="ClassMitra home, scroll to top">
       <div class="nav-logo-mark"><img src="CMLogo.png" alt="ClassMitra logo"></div>
       <span class="nav-logo-text">Class<span class="logo-highlight">Mitra</span></span>
-    </div>
+    </button>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
         stroke-linejoin="round" aria-hidden="true">
@@ -1630,8 +1648,8 @@
       <a href="#features">Features</a>
       <a href="#how">How it works</a>
       <a href="#contact">Contact</a>
-      <a href="#terms">Terms</a>
-      <a href="#privacy">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
       <a href="#" class="nav-cta">Download App</a>
     </div>
   </nav>
@@ -2419,8 +2437,9 @@
               <path d="M8.5 12.5l2.5 2.5 5-5.5" />
             </svg><span>Accounts found misusing the platform may be suspended.</span></li>
         </ul>
-        <a href="#contact" class="legal-card-link">Read the full terms <svg class="icon" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <a href="terms.html" class="legal-card-link">Read the full terms <svg class="icon" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+            aria-hidden="true">
             <path d="M5 12h14" />
             <path d="M13 6l6 6-6 6" />
           </svg></a>
@@ -2463,7 +2482,7 @@
             </svg><span>Parents can request full data deletion anytime by contacting us. Compliant with IT Act 2000 &
               DPDP Act 2023.</span></li>
         </ul>
-        <a href="#contact" class="legal-card-link">Read the full policy <svg class="icon" viewBox="0 0 24 24"
+        <a href="privacy.html" class="legal-card-link">Read the full policy <svg class="icon" viewBox="0 0 24 24"
             fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
             aria-hidden="true">
             <path d="M5 12h14" />
@@ -2477,9 +2496,11 @@
   <footer class="footer" id="privacy">
     <div class="footer-top">
       <div>
-        <div class="footer-logo-mark"><img src="CMLogo.png" alt="ClassMitra logo"></div>
-        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:5px">Class<span
-            style="color:var(--cm-amber)">Mitra</span></div>
+        <button class="footer-brand-btn" id="logoHomeBottom" aria-label="ClassMitra home, scroll to top">
+          <div class="footer-logo-mark"><img src="CMLogo.png" alt="ClassMitra logo"></div>
+          <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:5px">Class<span
+              style="color:var(--cm-amber)">Mitra</span></div>
+        </button>
         <div class="footer-tagline">India's digital operating system for local tuition classes.</div>
       </div>
       <div>
@@ -2491,8 +2512,9 @@
       <div>
         <div class="footer-links-title">Support</div>
         <a class="footer-link" href="#contact">Contact us</a>
-        <a class="footer-link" href="#terms">Terms & conditions</a>
-        <a class="footer-link" href="#terms">Privacy policy</a>
+        <a class="footer-link" href="terms.html">Terms & conditions</a>
+        <a class="footer-link" href="privacy.html">Privacy policy</a>
+        <a class="footer-link" href="delete-account.html">Delete an account</a>
       </div>
       <div>
         <div class="footer-links-title">Download</div>
@@ -2503,8 +2525,8 @@
     <div class="footer-bottom">
       <div class="footer-copy">© 2025 ClassMitra. All rights reserved. Built with ❤️ in India.</div>
       <div class="footer-bottom-links">
-        <a class="footer-bottom-link" href="#terms">Terms</a>
-        <a class="footer-bottom-link" href="#terms">Privacy</a>
+        <a class="footer-bottom-link" href="terms.html">Terms</a>
+        <a class="footer-bottom-link" href="privacy.html">Privacy</a>
         <a class="footer-bottom-link" href="#contact">Contact</a>
       </div>
     </div>
@@ -2717,6 +2739,15 @@
         navToggle.setAttribute('aria-expanded', 'false');
       });
     });
+
+    /* ============================================================
+       LOGO CLICK -> SCROLL TO TOP
+    ============================================================ */
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    document.getElementById('logoHomeTop').addEventListener('click', scrollToTop);
+    document.getElementById('logoHomeBottom').addEventListener('click', scrollToTop);
 
     /* ============================================================
        FADE-UP OBSERVER
