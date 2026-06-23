@@ -5,8 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ClassMitra — India's Tuition Management App</title>
-
-  <!-- App font: Poppins, to match the mobile app -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -116,8 +114,8 @@
     }
 
     .logo-highlight {
-  color: var(--cm-amber);
-}
+      color: var(--cm-amber);
+    }
 
     .nav-links {
       display: flex;
@@ -162,7 +160,7 @@
       padding: 80px 48px 100px;
       position: relative;
       overflow: hidden;
-      min-height: 560px;
+      min-height: 580px;
       display: flex;
       align-items: center
     }
@@ -175,7 +173,7 @@
     }
 
     .hero-content {
-      max-width: 620px;
+      max-width: 520px;
       position: relative;
       z-index: 2
     }
@@ -214,7 +212,7 @@
       color: rgba(255, 255, 255, 0.65);
       line-height: 1.7;
       margin-bottom: 36px;
-      max-width: 520px
+      max-width: 480px
     }
 
     .hero-btns {
@@ -223,7 +221,7 @@
       flex-wrap: wrap
     }
 
-    /* APP STORE BADGES - black, standard style */
+    /* APP STORE BADGES */
     .btn-store {
       display: flex;
       align-items: center;
@@ -267,105 +265,254 @@
       font-family: 'Poppins', sans-serif;
     }
 
-    .hero-phone-mock {
+    /* ===================== FAN SCREENSHOT LAYOUT ===================== */
+    .hero-fan {
       position: absolute;
-      right: 80px;
+      right: 40px;
       top: 50%;
       transform: translateY(-50%);
-      width: 220px;
-      background: var(--cm-dark);
-      border-radius: 32px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      width: 380px;
+      height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fan-stage {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Each phone card */
+    .fan-card {
+      position: absolute;
+      width: 180px;
+      height: 360px;
+      border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 32px 64px rgba(0, 0, 0, 0.4)
+      border: 1.5px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
+      background: #0A3D35;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.7s ease, z-index 0s;
+      transform-origin: bottom center;
+      left: 50%;
     }
 
-    .phone-screen {
-      background: var(--cm-bg)
+    /* Slot positions: index 0=center(active), 1=right1, 2=right2, -1=left1, -2=left2 */
+    .fan-card[data-slot="0"] {
+      transform: translateX(-50%) rotate(0deg) translateY(0px);
+      opacity: 1;
+      z-index: 5;
     }
 
-    .phone-topbar {
-      background: var(--cm-green);
-      padding: 10px 14px
+    .fan-card[data-slot="1"] {
+      transform: translateX(-10%) rotate(15deg) translateY(20px);
+      opacity: 0.85;
+      z-index: 4;
     }
 
-    .phone-topbar-text {
-      font-size: 10px;
-      font-weight: 700;
-      color: #fff
+    .fan-card[data-slot="2"] {
+      transform: translateX(22%) rotate(28deg) translateY(55px);
+      opacity: 0.6;
+      z-index: 3;
     }
 
-    .phone-topbar-sub {
-      font-size: 8px;
-      font-weight: 400;
-      color: rgba(255, 255, 255, 0.65)
+    .fan-card[data-slot="-1"] {
+      transform: translateX(-90%) rotate(-15deg) translateY(20px);
+      opacity: 0.85;
+      z-index: 4;
     }
 
-    .phone-hw-card {
-      background: #fff;
-      margin: 8px;
-      border-radius: 10px;
-      padding: 10px 12px;
-      border: 0.5px solid var(--cm-border)
+    .fan-card[data-slot="-2"] {
+      transform: translateX(-122%)rotate(-28deg) translateY(55px);
+      opacity: 0.6;
+      z-index: 3;
     }
 
-    .phone-hw-title {
+    .fan-card[data-slot="3"],
+    .fan-card[data-slot="-3"] {
+      transform: translateX(-50%) rotate(0deg) translateY(0px);
+      opacity: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Phone inner screen */
+    .fan-screen {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background: #F4F9F8;
+    }
+
+    .fan-notch {
+      background: #0A3D35;
+      padding: 10px 0 6px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .fan-notch-pill {
+      width: 52px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+    }
+
+    .fan-statusbar {
+      background: #0F7B6C;
+      padding: 8px 12px 7px;
+    }
+
+    .fan-st-title {
       font-size: 9px;
       font-weight: 700;
-      color: var(--cm-text);
-      margin-bottom: 5px
+      color: #fff;
+      font-family: sans-serif;
     }
 
-    .phone-hw-row {
+    .fan-st-sub {
+      font-size: 7px;
+      color: rgba(255, 255, 255, 0.6);
+      font-family: sans-serif;
+    }
+
+    .fan-body {
+      padding: 7px 8px;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .fan-card-inner {
+      background: #fff;
+      border-radius: 8px;
+      padding: 8px 10px;
+      margin-bottom: 6px;
+      border: 0.5px solid #D0E4E0;
+    }
+
+    .fan-card-title {
+      font-size: 8px;
+      font-weight: 700;
+      color: #1A2B28;
+      margin-bottom: 4px;
+      font-family: sans-serif;
+    }
+
+    .fan-row {
       display: flex;
+      align-items: center;
       gap: 5px;
-      align-items: flex-start;
-      padding: 3px 0;
-      border-bottom: 0.5px solid #F3F4F6
+      padding: 2.5px 0;
+      border-bottom: 0.5px solid #F3F4F6;
     }
 
-    .phone-hw-row:last-child {
-      border-bottom: none
+    .fan-row:last-child {
+      border-bottom: none;
     }
 
-    .phone-hw-dot {
+    .fan-dot {
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      margin-top: 3px;
-      flex-shrink: 0
+      flex-shrink: 0;
     }
 
-    .phone-hw-text {
-      font-size: 8px;
-      font-weight: 400;
-      color: var(--cm-text)
-    }
-
-    .phone-individual-card {
-      background: #fff;
-      margin: 6px 8px 8px;
-      border-radius: 10px;
-      padding: 8px 12px;
-      border: 1.5px solid var(--cm-amber)
-    }
-
-    .phone-ind-badge {
+    .fan-rtext {
       font-size: 7px;
+      color: #1A2B28;
+      font-family: sans-serif;
+    }
+
+    .fan-highlight {
+      border: 1.5px solid #F39C12 !important;
+    }
+
+    .fan-badge {
+      font-size: 6px;
       font-weight: 700;
       color: #92400E;
-      background: var(--cm-amber-light);
-      padding: 2px 7px;
+      background: #FEF0D3;
+      padding: 2px 6px;
       border-radius: 20px;
       display: inline-block;
-      margin-bottom: 4px
+      margin-bottom: 3px;
+      font-family: sans-serif;
     }
 
-    .phone-ind-text {
-      font-size: 8px;
-      font-weight: 400;
-      color: var(--cm-text)
+    .fan-fee-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3px 0;
+      border-bottom: 0.5px solid #F3F4F6;
     }
+
+    .fan-fee-row:last-child {
+      border-bottom: none;
+    }
+
+    .fan-fee-name {
+      font-size: 7px;
+      color: #1A2B28;
+      font-family: sans-serif;
+    }
+
+    .fan-fee-pill {
+      font-size: 6px;
+      font-weight: 700;
+      padding: 2px 5px;
+      border-radius: 20px;
+      font-family: sans-serif;
+    }
+
+    .fan-att-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+      margin-top: 4px;
+    }
+
+    .fan-att-cell {
+      aspect-ratio: 1;
+      border-radius: 2px;
+      font-size: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-family: sans-serif;
+      color: #fff;
+    }
+
+    .fan-stat-row {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 5px;
+    }
+
+    .fan-stat {
+      flex: 1;
+      border-radius: 6px;
+      padding: 5px 6px;
+      text-align: center;
+    }
+
+    .fan-stat-num {
+      font-size: 11px;
+      font-weight: 700;
+      font-family: sans-serif;
+    }
+
+    .fan-stat-lbl {
+      font-size: 6px;
+      font-weight: 600;
+      font-family: sans-serif;
+    }
+
+    /* ================================================================ */
 
     /* STATS BAND */
     .stats-band {
@@ -688,10 +835,6 @@
       background: var(--cm-amber)
     }
 
-    .feature-card.dark::before {
-      background: var(--cm-dark)
-    }
-
     .fc-tag {
       font-size: 9px;
       font-weight: 600;
@@ -759,81 +902,6 @@
 
     .feature-card.amber .fc-item-dot {
       background: var(--cm-amber)
-    }
-
-    /* Highlight card (used for Progress Tracking) - dark variant to stand out */
-    .feature-card.dark {
-      background: var(--cm-dark);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100%;
-    }
-
-    .fc-soon-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: rgba(243, 156, 18, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 14px;
-    }
-
-    .fc-soon-icon i,
-    .fc-soon-icon svg {
-      font-size: 22px;
-      color: var(--cm-amber);
-      width: 22px;
-      height: 22px;
-    }
-
-    .fc-soon-list {
-      margin-top: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      width: 100%;
-    }
-
-    .fc-soon-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.75);
-    }
-
-    .fc-soon-item i,
-    .fc-soon-item svg {
-      font-size: 14px;
-      color: var(--cm-amber);
-      flex-shrink: 0;
-      width: 14px;
-      height: 14px;
-    }
-
-    .fc-soon-cta {
-      margin-top: 18px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--cm-amber);
-      border: 1px solid rgba(243, 156, 18, 0.4);
-      border-radius: 8px;
-      padding: 7px 14px;
-    }
-
-    .fc-soon-cta i,
-    .fc-soon-cta svg {
-      font-size: 13px;
-      width: 13px;
-      height: 13px;
     }
 
     /* CTA SECTION */
@@ -1059,107 +1127,7 @@
       height: 18px;
     }
 
-    /* FOOTER */
-    .footer {
-      background: var(--cm-dark);
-      padding: 40px 68px 24px
-    }
-
-    .footer-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 32px;
-      flex-wrap: wrap;
-      gap: 24px
-    }
-
-    .footer-logo-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 8px;
-      background: #fff;
-      padding: 3px;
-      overflow: hidden;
-    }
-
-    .footer-logo-mark img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .footer-tagline {
-      font-size: 12px;
-      font-weight: 400;
-      color: rgba(255, 255, 255, 0.4);
-      max-width: 200px;
-      line-height: 1.5
-    }
-
-    .footer-links-title {
-      font-size: 11px;
-      font-weight: 700;
-      color: rgba(255, 255, 255, 0.5);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 14px
-    }
-
-    .footer-link {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      font-weight: 400;
-      color: rgba(255, 255, 255, 0.55);
-      margin-bottom: 9px;
-      transition: color 0.15s
-    }
-
-    .footer-link i,
-    .footer-link svg {
-      font-size: 15px;
-      width: 15px;
-      height: 15px;
-    }
-
-    .footer-link:hover {
-      color: #fff
-    }
-
-    .footer-bottom {
-      border-top: 0.5px solid rgba(255, 255, 255, 0.08);
-      padding-top: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px
-    }
-
-    .footer-copy {
-      font-size: 12px;
-      font-weight: 400;
-      color: rgba(255, 255, 255, 0.3)
-    }
-
-    .footer-bottom-links {
-      display: flex;
-      gap: 20px
-    }
-
-    .footer-bottom-link {
-      font-size: 12px;
-      font-weight: 400;
-      color: rgba(255, 255, 255, 0.4)
-    }
-
-    /* LEGAL: Terms & Privacy cards */
+    /* LEGAL */
     .legal-note-grid {
       max-width: 880px;
       margin: 0 auto;
@@ -1272,6 +1240,106 @@
       transform: translateX(3px);
     }
 
+    /* FOOTER */
+    .footer {
+      background: var(--cm-dark);
+      padding: 40px 68px 24px
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      gap: 24px
+    }
+
+    .footer-logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      background: #fff;
+      padding: 3px;
+      overflow: hidden;
+    }
+
+    .footer-logo-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .footer-tagline {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.4);
+      max-width: 200px;
+      line-height: 1.5
+    }
+
+    .footer-links-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 14px
+    }
+
+    .footer-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 9px;
+      transition: color 0.15s
+    }
+
+    .footer-link i,
+    .footer-link svg {
+      font-size: 15px;
+      width: 15px;
+      height: 15px;
+    }
+
+    .footer-link:hover {
+      color: #fff
+    }
+
+    .footer-bottom {
+      border-top: 0.5px solid rgba(255, 255, 255, 0.08);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.3)
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 20px
+    }
+
+    .footer-bottom-link {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.4)
+    }
+
     /* ANIMATIONS */
     .fade-up {
       opacity: 0;
@@ -1292,7 +1360,7 @@
       }
     }
 
-    /* ============ RESPONSIVE: TABLET ============ */
+    /* ============ RESPONSIVE ============ */
     @media (max-width: 900px) {
       .nav {
         padding: 14px 24px;
@@ -1350,7 +1418,7 @@
         font-size: 36px;
       }
 
-      .hero-phone-mock {
+      .hero-fan {
         display: none;
       }
 
@@ -1403,7 +1471,6 @@
       }
     }
 
-    /* ============ RESPONSIVE: MOBILE ============ */
     @media (max-width: 640px) {
       .nav {
         padding: 12px 20px;
@@ -1546,13 +1613,8 @@
   <!-- NAV -->
   <nav class="nav">
     <div class="nav-logo">
-      <div class="nav-logo-mark">
-        <img src="CMLogo.png" alt="ClassMitra logo">
-      </div>
-      <!-- <span class="nav-logo-text">ClassMitra</span> -->
-      <span class="nav-logo-text">
-        Class<span class="logo-highlight">Mitra</span>
-      </span>
+      <div class="nav-logo-mark"><img src="CMLogo.png" alt="ClassMitra logo"></div>
+      <span class="nav-logo-text">Class<span class="logo-highlight">Mitra</span></span>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
@@ -1576,12 +1638,15 @@
   <section class="hero" id="hero">
     <div class="hero-bg-circle" style="width:500px;height:500px;right:-120px;top:-140px"></div>
     <div class="hero-bg-circle" style="width:300px;height:300px;left:-80px;bottom:-100px"></div>
+
     <div class="hero-content fade-up" id="hero-txt">
-      <div class="hero-badge"><svg class="icon" style="font-size:12px" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <div class="hero-badge">
+        <svg class="icon" style="font-size:12px" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M12 3l2.5 5.5 6 .8-4.3 4.2 1 6-5.2-3-5.2 3 1-6L3.5 9.3l6-.8z" fill="currentColor" stroke="none" />
-        </svg> India's
-        tuition management app</div>
+        </svg>
+        India's tuition management app
+      </div>
       <h1>Tuition ka<br><span>digital saathi</span> 📚</h1>
       <p>ClassMitra connects tuition teachers, parents and students — homework delivered instantly, attendance tracked
         digitally, fees managed cleanly. No more WhatsApp chaos.</p>
@@ -1589,8 +1654,6 @@
         <a href="#" class="btn-store">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 3.5v17l9-8.5-9-8.5z" />
-            <path d="M13 12l4.5-2.6c1.5-.9 1.5-2.9 0-3.8L13 3z" opacity="0" />
             <path d="M4 3.5l13.5 7.8c1 .6 1 2 0 2.6L4 20.5" />
             <path d="M4 3.5l9 8.5-9 8.5" />
           </svg>
@@ -1613,44 +1676,10 @@
         </a>
       </div>
     </div>
-    <!-- Phone mockup -->
-    <div class="hero-phone-mock fade-up" id="hero-phone" style="transition-delay:0.2s">
-      <div style="background:var(--cm-dark);padding:14px 14px 8px;display:flex;justify-content:center">
-        <div style="width:60px;height:4px;background:rgba(255,255,255,0.15);border-radius:2px"></div>
-      </div>
-      <div class="phone-screen" style="padding-bottom:12px">
-        <div class="phone-topbar">
-          <div class="phone-topbar-text">Today's Homework</div>
-          <div class="phone-topbar-sub">Riya's class · Batch A</div>
-        </div>
-        <div class="phone-hw-card">
-          <div class="phone-hw-title">Class homework</div>
-          <div class="phone-hw-row">
-            <div class="phone-hw-dot" style="background:#3B82F6"></div>
-            <div class="phone-hw-text"><b>Math</b> — Page 23, Q1–10</div>
-          </div>
-          <div class="phone-hw-row">
-            <div class="phone-hw-dot" style="background:#F59E0B"></div>
-            <div class="phone-hw-text"><b>English</b> — Write essay on summer</div>
-          </div>
-          <div class="phone-hw-row" style="border:none">
-            <div class="phone-hw-dot" style="background:#10B981"></div>
-            <div class="phone-hw-text"><b>EVS</b> — Bring leaf collection</div>
-          </div>
-        </div>
-        <div class="phone-individual-card">
-          <div class="phone-ind-badge">For Riya only</div>
-          <div class="phone-ind-text"><b>Math</b> — Practice tables 6–10 daily (3 rounds)</div>
-        </div>
-        <div style="padding:0 8px">
-          <div
-            style="background:var(--cm-light);border-radius:8px;padding:7px 10px;display:flex;justify-content:space-between;align-items:center">
-            <div style="font-size:8px;color:var(--cm-sub)"><b style="color:var(--cm-green)">Attendance</b> — November
-            </div>
-            <div style="font-size:9px;font-weight:700;color:var(--cm-green)">92%</div>
-          </div>
-        </div>
-      </div>
+
+    <!-- FAN SCREENSHOT DISPLAY -->
+    <div class="hero-fan fade-up" id="hero-fan" style="transition-delay:0.2s">
+      <div class="fan-stage" id="fanStage"></div>
     </div>
   </section>
 
@@ -1850,8 +1879,7 @@
           <path d="M10 16v4" />
           <path d="M14 16v4" />
           <path d="M7 8h6" />
-        </svg>
-        Teacher</button>
+        </svg> Teacher</button>
       <button class="btab" onclick="showTab('parent', this)"><svg class="icon" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="8.5" cy="8" r="3" />
@@ -1898,7 +1926,6 @@
             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="9" />
             <path d="M9 8h6" />
-            <path d="M9 11h6" />
             <path d="M9 8c2.5 0 4 1 4 2.5S11.5 13 9 13" />
             <path d="M9 13h6l-5 5" />
           </svg></div>
@@ -2180,15 +2207,16 @@
       </div>
       <div class="feature-card amber">
         <div class="fc-tag">Progress</div>
-        <div class="icon fc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 19V9" />
-            <path d="M10 19V5" />
-            <path d="M16 19v-7" />
-            <path d="M20 19V3" />
-          </svg></div>
+        <svg class="icon fc-icon" style="color:var(--cm-amber)" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 19V9" />
+          <path d="M10 19V5" />
+          <path d="M16 19v-7" />
+          <path d="M20 19V3" />
+        </svg>
         <div class="fc-title">Progress tracking</div>
-        <div class="fc-text">See how each child is improving over time — not just attendance, but real academic growth.</div>
+        <div class="fc-text">See how each child is improving over time — not just attendance, but real academic growth.
+        </div>
         <div class="fc-items">
           <div class="fc-item">
             <div class="fc-item-dot" style="background:var(--cm-amber)"></div>Test & exam marks logged per subject
@@ -2204,44 +2232,6 @@
           </div>
         </div>
       </div>
-      <!-- <div class="feature-card dark">
-        <div class="fc-soon-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 19V9" />
-            <path d="M10 19V5" />
-            <path d="M16 19v-7" />
-            <path d="M20 19V3" />
-          </svg></div>
-        <div class="fc-tag" style="color:var(--cm-amber)">Progress</div>
-        <div class="fc-title" style="color:#fff">Progress tracking</div>
-        <div class="fc-text" style="color:rgba(255,255,255,0.55)">See how each child is improving over time — not just
-          attendance, but real academic growth.</div>
-        <div class="fc-soon-list">
-          <div class="fc-soon-item"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="4" y="3" width="16" height="18" rx="2" />
-              <path d="M9 17v-4" />
-              <path d="M12 17v-7" />
-              <path d="M15 17v-2.5" />
-            </svg>Test & exam marks logged per subject</div>
-          <div class="fc-soon-item"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 20h18" />
-              <path d="M4 16l4-5 4 3 6-8" />
-            </svg>Visual trend line parents can follow</div>
-          <div class="fc-soon-item"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z" />
-              <path d="M9.5 9l1.8 1.8 3.2-3.6" />
-            </svg>Teacher remarks tied to each result</div>
-          <div class="fc-soon-item"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M6 9V3h12v6" />
-              <rect x="4" y="9" width="16" height="8" rx="1" />
-              <path d="M6 17v4h12v-4" />
-            </svg>Shareable progress summary, anytime</div>
-        </div>
-      </div> -->
     </div>
   </section>
 
@@ -2252,11 +2242,8 @@
       <h2>Start using ClassMitra<br>in the next 5 minutes</h2>
       <p>Teacher signs up, creates a class, adds students. Parents join free. Works on Android and iOS.</p>
       <div class="cta-btns">
-        <a href="#" class="btn-store">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 3.5v17l9-8.5-9-8.5z" />
-            <path d="M13 12l4.5-2.6c1.5-.9 1.5-2.9 0-3.8L13 3z" opacity="0" />
+        <a href="#" class="btn-store"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M4 3.5l13.5 7.8c1 .6 1 2 0 2.6L4 20.5" />
             <path d="M4 3.5l9 8.5-9 8.5" />
           </svg>
@@ -2265,9 +2252,8 @@
             <div class="btn-store-main">Google Play</div>
           </div>
         </a>
-        <a href="#" class="btn-store">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <a href="#" class="btn-store"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path
               d="M8.5 4.5c-1.4 0-2.7 1.1-3.4 2.7C3.9 9.7 4.3 14 6.6 17.7c1 1.6 2.2 3.3 3.8 3.3 1.1 0 1.6-.6 3-.6 1.4 0 1.8.6 3 .6 1.6 0 2.7-1.6 3.7-3.1 1.1-1.7 1.6-3.4 1.6-3.5-.1 0-2.9-1.1-2.9-4.4 0-2.8 2.2-4.1 2.3-4.2-1.3-1.8-3.2-2-3.8-2-1.5 0-2.7.9-3.5.9-.8 0-1.9-.9-3.3-.9z" />
             <path d="M14.5 2c.1 1-.3 2-.9 2.7-.6.8-1.6 1.4-2.6 1.3-.1-1 .4-2 1-2.7C12.6 2.5 13.6 2 14.5 2z" />
@@ -2401,7 +2387,7 @@
     </div>
   </section>
 
-  <!-- TERMS & PRIVACY PREVIEW -->
+  <!-- TERMS & PRIVACY -->
   <section class="section section-alt" id="terms">
     <div class="section-center" style="margin-bottom:40px">
       <div class="section-eyebrow">Legal</div>
@@ -2412,53 +2398,41 @@
     <div class="legal-note-grid">
       <div class="legal-card">
         <div class="legal-card-head">
-          <div class="legal-card-icon">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <div class="legal-card-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M9 12h6" />
               <path d="M9 16h6" />
               <path d="M7 4h10a2 2 0 0 1 2 2v13l-3-2-3 2-3-2-3 2V6a2 2 0 0 1 2-2z" />
-            </svg>
-          </div>
+            </svg></div>
           <div>
             <div class="legal-card-title">Terms & Conditions</div>
             <div class="legal-card-meta">Last updated: June 2026</div>
           </div>
         </div>
         <ul class="legal-points">
-          <li>
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="12" cy="12" r="9" />
               <path d="M8.5 12.5l2.5 2.5 5-5.5" />
-            </svg>
-            <span>ClassMitra is for lawful, educational communication between teachers, parents and students
-              only.</span>
-          </li>
-          <li>
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            </svg><span>ClassMitra is for lawful, educational communication between teachers, parents and students
+              only.</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="12" cy="12" r="9" />
               <path d="M8.5 12.5l2.5 2.5 5-5.5" />
-            </svg>
-            <span>Teacher subscriptions bill monthly or annually, and can be cancelled anytime — no lock-in.</span>
-          </li>
-          <li>
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            </svg><span>Teacher subscriptions bill monthly or annually, and can be cancelled anytime — no
+              lock-in.</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="12" cy="12" r="9" />
               <path d="M8.5 12.5l2.5 2.5 5-5.5" />
-            </svg>
-            <span>Homework, attendance and fee records are the responsibility of the teacher posting them.</span>
+            </svg><span>Homework, attendance and fee records are the responsibility of the teacher posting them.</span>
           </li>
-          <li>
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="12" cy="12" r="9" />
               <path d="M8.5 12.5l2.5 2.5 5-5.5" />
-            </svg>
-            <span>Accounts found misusing the platform may be suspended.</span>
-          </li>
+            </svg><span>Accounts found misusing the platform may be suspended.</span></li>
         </ul>
         <a href="#contact" class="legal-card-link">Read the full terms <svg class="icon" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -2466,55 +2440,43 @@
             <path d="M13 6l6 6-6 6" />
           </svg></a>
       </div>
-
       <div class="legal-card">
         <div class="legal-card-head">
-          <div class="legal-card-icon">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <div class="legal-card-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" />
               <path d="M9 12l2 2 4-4.5" />
-            </svg>
-          </div>
+            </svg></div>
           <div>
             <div class="legal-card-title">Privacy Policy</div>
             <div class="legal-card-meta">Last updated: June 2026</div>
           </div>
         </div>
         <ul class="legal-points">
-          <li>
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="12" cy="12" r="9" />
               <path d="M8.5 12.5l2.5 2.5 5-5.5" />
-            </svg>
-            <span>We collect only what's needed: phone number, student name, parent contact and homework content.</span>
-          </li>
-          <li>
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            </svg><span>We collect only what's needed: phone number, student name, parent contact and homework
+              content.</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="12" cy="12" r="9" />
               <path d="M8.5 12.5l2.5 2.5 5-5.5" />
-            </svg>
-            <span><b>We never sell your data</b> to advertisers or third parties, under any circumstance.</span>
+            </svg><span><b>We never sell your data</b> to advertisers or third parties, under any circumstance.</span>
           </li>
-          <li>
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="12" cy="12" r="9" />
               <path d="M8.5 12.5l2.5 2.5 5-5.5" />
-            </svg>
-            <span>All data is stored securely on Firebase (Google Cloud). WhatsApp alerts are opt-in only.</span>
+            </svg><span>All data is stored securely on Firebase (Google Cloud). WhatsApp alerts are opt-in only.</span>
           </li>
-          <li>
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="12" cy="12" r="9" />
               <path d="M8.5 12.5l2.5 2.5 5-5.5" />
-            </svg>
-            <span>Parents can request full data deletion anytime by contacting us. Compliant with IT Act 2000 & DPDP Act
-              2023.</span>
-          </li>
+            </svg><span>Parents can request full data deletion anytime by contacting us. Compliant with IT Act 2000 &
+              DPDP Act 2023.</span></li>
         </ul>
         <a href="#contact" class="legal-card-link">Read the full policy <svg class="icon" viewBox="0 0 24 24"
             fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
@@ -2530,13 +2492,9 @@
   <footer class="footer" id="privacy">
     <div class="footer-top">
       <div>
-        <div class="footer-logo-mark">
-          <img src="CMLogo.png" alt="ClassMitra logo">
-        </div>
-        <!-- <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:5px">ClassMitra</div> -->
-        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:5px">
-          Class<span class="logo-highlight">Mitra</span>
-        </div>
+        <div class="footer-logo-mark"><img src="CMLogo.png" alt="ClassMitra logo"></div>
+        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:5px">Class<span
+            style="color:var(--cm-amber)">Mitra</span></div>
         <div class="footer-tagline">India's digital operating system for local tuition classes.</div>
       </div>
       <div>
@@ -2555,8 +2513,6 @@
         <div class="footer-links-title">Download</div>
         <a class="footer-link" href="#"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 3.5v17l9-8.5-9-8.5z" />
-            <path d="M13 12l4.5-2.6c1.5-.9 1.5-2.9 0-3.8L13 3z" opacity="0" />
             <path d="M4 3.5l13.5 7.8c1 .6 1 2 0 2.6L4 20.5" />
             <path d="M4 3.5l9 8.5-9 8.5" />
           </svg>Google Play</a>
@@ -2579,6 +2535,228 @@
   </footer>
 
   <script>
+    /* ============================================================
+       FAN SCREENSHOT LAYOUT — auto-rotating, no dots/buttons
+       5 cards fanned out; center = active, rotates every 3s
+    ============================================================ */
+    const fanScreens = [
+      {
+        color: '#0F7B6C',
+        label: 'Homework Feed',
+        content: `
+          <div class="fan-card-inner">
+            <div class="fan-card-title">Today's homework</div>
+            <div class="fan-row"><div class="fan-dot" style="background:#3B82F6"></div><div class="fan-rtext"><b>Math</b> — Page 23, Q1–10</div></div>
+            <div class="fan-row"><div class="fan-dot" style="background:#F59E0B"></div><div class="fan-rtext"><b>English</b> — Essay on summer</div></div>
+            <div class="fan-row"><div class="fan-dot" style="background:#10B981"></div><div class="fan-rtext"><b>EVS</b> — Leaf collection</div></div>
+          </div>
+          <div class="fan-card-inner fan-highlight">
+            <div class="fan-badge">For Riya only</div>
+            <div class="fan-rtext"><b>Math</b> — Tables 6–10 daily</div>
+          </div>
+          <div class="fan-card-inner" style="display:flex;align-items:center;gap:6px">
+            <div style="font-size:16px;line-height:1">📢</div>
+            <div><div class="fan-card-title" style="margin-bottom:1px">Notice</div><div class="fan-rtext">No class Saturday</div></div>
+          </div>`
+      },
+      {
+        color: '#B45309',
+        label: 'Attendance',
+        content: `
+          <div class="fan-stat-row">
+            <div class="fan-stat" style="background:#E1F5EE">
+              <div class="fan-stat-num" style="color:#0A3D35">92%</div>
+              <div class="fan-stat-lbl" style="color:#0F7B6C">This month</div>
+            </div>
+            <div class="fan-stat" style="background:#FEF0D3">
+              <div class="fan-stat-num" style="color:#92400E">3</div>
+              <div class="fan-stat-lbl" style="color:#B45309">Absences</div>
+            </div>
+          </div>
+          <div class="fan-card-inner">
+            <div class="fan-card-title">June 2026</div>
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px">
+              ${['M', 'T', 'W', 'T', 'F', 'S', 'S'].map(d => `<div style="font-size:5px;font-weight:600;color:#8A9E9A;text-align:center;font-family:sans-serif">${d}</div>`).join('')}
+            </div>
+            <div class="fan-att-grid">
+              <div></div>
+              ${[...Array(29)].map((_, i) => {
+          const d = i + 1;
+          const absent = [4, 11, 18].includes(d);
+          const wknd = [6, 7, 13, 14, 20, 21, 27, 28].includes(d);
+          const c = wknd ? '#E5E7EB' : absent ? '#EF4444' : '#10B981';
+          return `<div class="fan-att-cell" style="background:${c};${wknd ? 'color:#9CA3AF' : ''}">${d}</div>`;
+        }).join('')}
+            </div>
+          </div>
+          <div class="fan-card-inner">
+            <div class="fan-card-title">Today — mark</div>
+            ${[['Riya', '#10B981', 'P'], ['Aarav', '#EF4444', 'A'], ['Priya', '#F59E0B', 'L']].map(([n, c, s]) => `
+            <div class="fan-fee-row"><span class="fan-fee-name">${n}</span><span class="fan-fee-pill" style="background:${c}22;color:${c}">${s}</span></div>`).join('')}
+          </div>`
+      },
+      {
+        color: '#0A3D35',
+        label: 'Fees',
+        content: `
+          <div class="fan-stat-row">
+            <div class="fan-stat" style="background:#E1F5EE">
+              <div class="fan-stat-num" style="color:#0A3D35">₹2,970</div>
+              <div class="fan-stat-lbl" style="color:#0F7B6C">Collected</div>
+            </div>
+            <div class="fan-stat" style="background:#FEF0D3">
+              <div class="fan-stat-num" style="color:#92400E">₹990</div>
+              <div class="fan-stat-lbl" style="color:#B45309">Pending</div>
+            </div>
+          </div>
+          <div class="fan-card-inner">
+            <div class="fan-card-title">All students — June</div>
+            ${[['Riya Sharma', '#10B981', 'Paid'], ['Aarav Mehta', '#10B981', 'Paid'], ['Priya Patel', '#F59E0B', 'Pending'], ['Karan Joshi', '#10B981', 'Paid'], ['Sneha Rao', '#EF4444', 'Overdue']].map(([n, c, s]) => `
+            <div class="fan-fee-row"><span class="fan-fee-name">${n}</span><span class="fan-fee-pill" style="background:${c}22;color:${c}">${s}</span></div>`).join('')}
+          </div>
+          <div style="background:#0F7B6C;border-radius:6px;padding:6px;text-align:center;margin-top:2px">
+            <div style="font-size:7px;font-weight:700;color:#fff;font-family:sans-serif">Send reminders (2)</div>
+          </div>`
+      },
+      {
+        color: '#1D4ED8',
+        label: 'Notices',
+        content: `
+          <div class="fan-card-inner" style="display:flex;align-items:flex-start;gap:6px">
+            <div style="font-size:16px">📢</div>
+            <div>
+              <div class="fan-card-title">Holiday — 25 Jun</div>
+              <div class="fan-rtext">No class on Wednesday due to local festival. Classes resume Thursday normally.</div>
+            </div>
+          </div>
+          <div class="fan-card-inner" style="display:flex;align-items:flex-start;gap:6px">
+            <div style="font-size:16px">📝</div>
+            <div>
+              <div class="fan-card-title">Test — 28 Jun</div>
+              <div class="fan-rtext">Math chapters 4–7. Bring geometry box.</div>
+            </div>
+          </div>
+          <div class="fan-card-inner" style="display:flex;align-items:flex-start;gap:6px">
+            <div style="font-size:16px">⏰</div>
+            <div>
+              <div class="fan-card-title">Timing change</div>
+              <div class="fan-rtext">Evening batch now at 6:30 PM from July 1.</div>
+            </div>
+          </div>`
+      },
+      {
+        color: '#7C3AED',
+        label: 'Progress',
+        content: `
+          <div class="fan-card-inner">
+            <div class="fan-card-title">Riya Sharma — June</div>
+            ${[['Math', '87', '▲ 4'], ['English', '74', '▲ 9'], ['Science', '91', '▼ 2'], ['Hindi', '68', '▲ 6']].map(([s, m, c]) => `
+            <div class="fan-fee-row">
+              <span class="fan-fee-name">${s}</span>
+              <div style="display:flex;align-items:center;gap:4px">
+                <span style="font-size:8px;font-weight:700;color:#1A2B28;font-family:sans-serif">${m}%</span>
+                <span style="font-size:6px;font-weight:600;color:${c.startsWith('▲') ? '#10B981' : '#EF4444'};font-family:sans-serif">${c}</span>
+              </div>
+            </div>`).join('')}
+          </div>
+          <div class="fan-card-inner">
+            <div class="fan-card-title">Teacher's remark</div>
+            <div class="fan-rtext" style="font-style:italic">"Great improvement in English. Keep practicing Math daily."</div>
+          </div>
+          <div style="background:#EDE9FE;border-radius:6px;padding:6px;text-align:center;margin-top:2px">
+            <div style="font-size:7px;font-weight:700;color:#5B21B6;font-family:sans-serif">Share progress report →</div>
+          </div>`
+      }
+    ];
+
+    const TOTAL = fanScreens.length;
+    let fanCenter = 0;
+
+    function buildCard(screenIdx) {
+      const s = fanScreens[screenIdx];
+      const card = document.createElement('div');
+      card.className = 'fan-card';
+      card.innerHTML = `
+        <div class="fan-screen">
+          <div class="fan-notch"><div class="fan-notch-pill"></div></div>
+          <div class="fan-statusbar" style="background:${s.color}">
+            <div class="fan-st-title">${s.label}</div>
+            <div class="fan-st-sub">ClassMitra</div>
+          </div>
+          <div class="fan-body">${s.content}</div>
+        </div>`;
+      return card;
+    }
+
+    function slotOf(screenIdx) {
+      let d = (screenIdx - fanCenter + TOTAL) % TOTAL;
+      if (d > TOTAL / 2) d -= TOTAL;
+      return d;
+    }
+
+    const stage = document.getElementById('fanStage');
+    const cards = [];
+
+    for (let i = 0; i < TOTAL; i++) {
+      const card = buildCard(i);
+      cards.push(card);
+      stage.appendChild(card);
+    }
+
+    function applySlots() {
+      for (let i = 0; i < TOTAL; i++) {
+        const slot = slotOf(i);
+        const validSlots = ['-2', '-1', '0', '1', '2'];
+        const slotStr = String(slot);
+        if (validSlots.includes(slotStr)) {
+          cards[i].setAttribute('data-slot', slotStr);
+          cards[i].style.display = '';
+        } else {
+          cards[i].setAttribute('data-slot', slot > 0 ? '3' : '-3');
+        }
+      }
+    }
+
+    applySlots();
+
+    setInterval(() => {
+      fanCenter = (fanCenter + 1) % TOTAL;
+      applySlots();
+    }, 2800);
+
+    /* ============================================================
+       NAV TOGGLE
+    ============================================================ */
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    /* ============================================================
+       FADE-UP OBSERVER
+    ============================================================ */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    setTimeout(() => {
+      document.getElementById('hero-txt').classList.add('visible');
+      setTimeout(() => document.getElementById('hero-fan').classList.add('visible'), 200);
+    }, 100);
+
+    /* ============================================================
+       TAB SWITCHER
+    ============================================================ */
     function showTab(tab, btn) {
       document.querySelectorAll('.btab').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.btab-content').forEach(c => c.classList.remove('active'));
@@ -2586,37 +2764,9 @@
       btn.classList.add('active');
     }
 
-    // Mobile nav toggle
-    const navToggle = document.getElementById('navToggle');
-    const navLinks = document.getElementById('navLinks');
-    const navToggleIcon = document.getElementById('navToggleIcon');
-
-    navToggle.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', isOpen);
-      navToggleIcon.className = isOpen ? 'ti ti-x' : 'ti ti-menu-2';
-    });
-
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
-        navToggleIcon.className = 'ti ti-menu-2';
-      });
-    });
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-    setTimeout(() => {
-      document.getElementById('hero-txt').classList.add('visible');
-      setTimeout(() => document.getElementById('hero-phone').classList.add('visible'), 200);
-    }, 100);
-
-    // ===== Contact form validation =====
+    /* ============================================================
+       CONTACT FORM VALIDATION
+    ============================================================ */
     const form = document.getElementById('contactForm');
     const nameInput = document.getElementById('cf-name');
     const emailInput = document.getElementById('cf-email');
@@ -2626,51 +2776,18 @@
 
     function setFieldState(input, errorId, isValid) {
       const errorEl = document.getElementById(errorId);
-      if (isValid) {
-        input.classList.remove('invalid');
-        input.classList.add('valid');
-        errorEl.classList.remove('show');
-      } else {
-        input.classList.remove('valid');
-        input.classList.add('invalid');
-        errorEl.classList.add('show');
-      }
+      if (isValid) { input.classList.remove('invalid'); input.classList.add('valid'); errorEl.classList.remove('show'); }
+      else { input.classList.remove('valid'); input.classList.add('invalid'); errorEl.classList.add('show'); }
     }
-
-    function validateName() {
-      const ok = nameInput.value.trim().length >= 2;
-      setFieldState(nameInput, 'cf-name-error', ok);
-      return ok;
-    }
-
-    function validateEmail() {
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const ok = re.test(emailInput.value.trim());
-      setFieldState(emailInput, 'cf-email-error', ok);
-      return ok;
-    }
-
-    function validatePhone() {
-      // Strip spaces, dashes, and an optional +91 / 91 prefix, expect 10 digits starting 6-9
-      const raw = phoneInput.value.trim().replace(/[\s-]/g, '');
-      const digitsOnly = raw.replace(/^(\+91|91)/, '');
-      const re = /^[6-9]\d{9}$/;
-      const ok = re.test(digitsOnly);
-      setFieldState(phoneInput, 'cf-phone-error', ok);
-      return ok;
-    }
-
-    function validateMessage() {
-      const ok = messageInput.value.trim().length >= 5;
-      setFieldState(messageInput, 'cf-message-error', ok);
-      return ok;
-    }
+    function validateName() { const ok = nameInput.value.trim().length >= 2; setFieldState(nameInput, 'cf-name-error', ok); return ok; }
+    function validateEmail() { const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim()); setFieldState(emailInput, 'cf-email-error', ok); return ok; }
+    function validatePhone() { const raw = phoneInput.value.trim().replace(/[\s-]/g, '').replace(/^(\+91|91)/, ''); const ok = /^[6-9]\d{9}$/.test(raw); setFieldState(phoneInput, 'cf-phone-error', ok); return ok; }
+    function validateMessage() { const ok = messageInput.value.trim().length >= 5; setFieldState(messageInput, 'cf-message-error', ok); return ok; }
 
     nameInput.addEventListener('blur', validateName);
     emailInput.addEventListener('blur', validateEmail);
     phoneInput.addEventListener('blur', validatePhone);
     messageInput.addEventListener('blur', validateMessage);
-
     nameInput.addEventListener('input', () => { if (nameInput.classList.contains('invalid')) validateName(); });
     emailInput.addEventListener('input', () => { if (emailInput.classList.contains('invalid')) validateEmail(); });
     phoneInput.addEventListener('input', () => { if (phoneInput.classList.contains('invalid')) validatePhone(); });
@@ -2679,13 +2796,8 @@
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       successBox.classList.remove('show');
-
-      const validName = validateName();
-      const validEmail = validateEmail();
-      const validPhone = validatePhone();
-      const validMessage = validateMessage();
-
-      if (validName && validEmail && validPhone && validMessage) {
+      const ok = validateName() & validateEmail() & validatePhone() & validateMessage();
+      if (ok) {
         successBox.classList.add('show');
         form.reset();
         [nameInput, emailInput, phoneInput, messageInput].forEach(el => el.classList.remove('valid', 'invalid'));
