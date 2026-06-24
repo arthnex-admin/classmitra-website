@@ -151,7 +151,9 @@
       font-size: 13px;
       font-weight: 600;
       padding: 8px 18px;
-      border-radius: 8px
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
     }
 
     .nav-toggle {
@@ -244,6 +246,8 @@
       color: #fff;
       transition: all 0.15s;
       min-width: 168px;
+      cursor: pointer;
+      text-decoration: none;
     }
 
     .btn-store:hover {
@@ -251,8 +255,7 @@
       border-color: rgba(255, 255, 255, 0.4);
     }
 
-    .btn-store i,
-    .btn-store svg {
+    .btn-store i {
       font-size: 26px;
       color: #fff;
       flex-shrink: 0;
@@ -276,81 +279,96 @@
       font-family: 'Poppins', sans-serif;
     }
 
-    /* ===================== FAN SCREENSHOT LAYOUT ===================== */
+    /* ===================== CAROUSEL WITH DOTS ===================== */
     .hero-fan {
       position: absolute;
       right: 40px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 380px;
-      height: 480px;
+      /* top: 10%;
+      transform: translateY(-50%); */
+      width: 720px;
+      height: 450px;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding-right: 20px;
     }
 
     .fan-stage {
       position: relative;
       width: 100%;
       height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      perspective: 1000px;
     }
 
-    /* Each phone card */
     .fan-card {
       position: absolute;
       width: 200px;
       height: 400px;
-      border-radius: 24px;
+      border-radius: 28px;
       overflow: hidden;
-      border: 1.5px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
       background: #0A3D35;
-      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.7s ease, z-index 0s;
-      transform-origin: bottom center;
-      left: 20%;
-      bottom: 40%;
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 1;
     }
 
-    /* Slot positions: index 0=center(active), 1=right1, 2=right2, -1=left1, -2=left2 */
+    /* CENTER CARD - CRYSTAL CLEAR */
     .fan-card[data-slot="0"] {
-      transform: translateX(-50%) rotate(0deg) translateY(0px);
+      transform: translateX(0) scale(1);
       opacity: 1;
       z-index: 5;
+      width: 220px;
+      height: 440px;
+      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.6);
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      filter: brightness(1.05);
     }
 
+    /* RIGHT 5% FADED */
     .fan-card[data-slot="1"] {
-      transform: translateX(-10%) rotate(15deg) translateY(20px);
-      opacity: 0.85;
-      z-index: 4;
+      transform: translateX(150px) scale(0.8);
+      opacity: 0.95;
+      z-index: 3;
+      filter: brightness(0.98);
     }
 
+    /* RIGHT 10% FADED */
     .fan-card[data-slot="2"] {
-      transform: translateX(22%) rotate(28deg) translateY(55px);
-      opacity: 0.6;
-      z-index: 3;
-    }
-
-    .fan-card[data-slot="-1"] {
-      transform: translateX(-90%) rotate(-15deg) translateY(20px);
+      transform: translateX(280px) scale(0.65);
       opacity: 0.85;
-      z-index: 4;
+      z-index: 2;
+      filter: brightness(0.95);
     }
 
-    .fan-card[data-slot="-2"] {
-      transform: translateX(-122%)rotate(-28deg) translateY(55px);
-      opacity: 0.6;
+    /* LEFT 5% FADED */
+    .fan-card[data-slot="-1"] {
+      transform: translateX(-150px) scale(0.8);
+      opacity: 0.95;
       z-index: 3;
+      filter: brightness(0.98);
+    }
+
+    /* LEFT 10% FADED */
+    .fan-card[data-slot="-2"] {
+      transform: translateX(-280px) scale(0.65);
+      opacity: 0.85;
+      z-index: 2;
+      filter: brightness(0.95);
     }
 
     .fan-card[data-slot="3"],
     .fan-card[data-slot="-3"] {
-      transform: translateX(-50%) rotate(0deg) translateY(0px);
+      transform: translateX(450px) scale(0.5);
       opacity: 0;
-      z-index: 1;
+      z-index: 0;
       pointer-events: none;
     }
 
-    /* Phone inner screen */
     .fan-screen {
       width: 100%;
       height: 100%;
@@ -524,6 +542,38 @@
       font-family: sans-serif;
     }
 
+    /* CAROUSEL DOTS */
+    .carousel-controls {
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.35);
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      padding: 0;
+    }
+
+    .carousel-dot:hover {
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    .carousel-dot.active {
+      background: rgba(255, 255, 255, 0.95);
+      width: 28px;
+      border-radius: 5px;
+    }
+
     /* ================================================================ */
 
     /* STATS BAND */
@@ -599,223 +649,6 @@
       margin: 0 auto 48px
     }
 
-    /* PROBLEM SECTION */
-    .problem-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      max-width: 800px;
-      margin: 0 auto
-    }
-
-    .problem-card {
-      background: #fff;
-      border: 0.5px solid var(--cm-border);
-      border-radius: 14px;
-      padding: 18px 20px;
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      text-align: left;
-    }
-
-    .problem-icon {
-      font-size: 22px;
-      width: 22px;
-      height: 22px;
-      color: var(--cm-muted);
-      flex-shrink: 0;
-      margin-top: 2px
-    }
-
-    .problem-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--cm-dark);
-      margin-bottom: 3px
-    }
-
-    .problem-text {
-      font-size: 12px;
-      font-weight: 400;
-      color: var(--cm-sub);
-      line-height: 1.5
-    }
-
-    .problem-card.solved {
-      border-color: var(--cm-green);
-      background: #fff
-    }
-
-    .problem-card.solved .problem-icon {
-      color: var(--cm-green)
-    }
-
-    /* USER BENEFITS */
-    .benefits-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 36px;
-      flex-wrap: wrap
-    }
-
-    .btab {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 22px;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      border: 0.5px solid var(--cm-border);
-      color: var(--cm-sub);
-      background: var(--cm-card);
-      transition: all 0.15s
-    }
-
-    .btab i,
-    .btab svg {
-      font-size: 16px;
-      width: 16px;
-      height: 16px;
-    }
-
-    .btab.active {
-      background: var(--cm-green);
-      color: #fff;
-      border-color: var(--cm-green)
-    }
-
-    .btab-content {
-      display: none
-    }
-
-    .btab-content.active {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 14px
-    }
-
-    .benefit-card {
-      background: #fff;
-      border: 0.5px solid var(--cm-border);
-      border-radius: 14px;
-      padding: 20px 18px;
-      text-align: left;
-    }
-
-    .benefit-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: var(--cm-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 12px
-    }
-
-    .benefit-icon i,
-    .benefit-icon svg {
-      font-size: 20px;
-      color: var(--cm-green);
-      width: 20px;
-      height: 20px;
-    }
-
-    .benefit-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--cm-dark);
-      margin-bottom: 4px
-    }
-
-    .benefit-text {
-      font-size: 12px;
-      font-weight: 400;
-      color: var(--cm-sub);
-      line-height: 1.5
-    }
-
-    /* HOW IT WORKS */
-    .flow-steps {
-      display: flex;
-      gap: 0;
-      position: relative;
-      max-width: 900px;
-      margin: 0 auto
-    }
-
-    .flow-step {
-      flex: 1;
-      text-align: center;
-      position: relative;
-      padding: 0 12px
-    }
-
-    .flow-step-num {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: var(--cm-green);
-      color: #fff;
-      font-size: 16px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 14px
-    }
-
-    .flow-step-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
-      background: var(--cm-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 12px
-    }
-
-    .flow-step-icon i,
-    .flow-step-icon svg {
-      font-size: 24px;
-      color: var(--cm-green);
-      width: 24px;
-      height: 24px;
-    }
-
-    .flow-step-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--cm-dark);
-      margin-bottom: 4px
-    }
-
-    .flow-step-text {
-      font-size: 11px;
-      font-weight: 400;
-      color: var(--cm-sub);
-      line-height: 1.5
-    }
-
-    .flow-connector {
-      position: absolute;
-      top: 22px;
-      right: -30px;
-      width: 60px;
-      height: 1px;
-      border-top: 1.5px dashed var(--cm-border);
-      z-index: 0
-    }
-
-    .flow-step:last-child .flow-connector {
-      display: none
-    }
-
     /* FEATURES GRID */
     .features-grid {
       display: grid;
@@ -887,35 +720,6 @@
       line-height: 1.6
     }
 
-    .fc-items {
-      margin-top: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 5px
-    }
-
-    .fc-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 6px;
-      font-size: 11px;
-      font-weight: 400;
-      color: var(--cm-sub)
-    }
-
-    .fc-item-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--cm-green);
-      flex-shrink: 0;
-      margin-top: 4px
-    }
-
-    .feature-card.amber .fc-item-dot {
-      background: var(--cm-amber)
-    }
-
     /* CTA SECTION */
     .cta-section {
       background: var(--cm-dark);
@@ -955,301 +759,6 @@
       font-size: 12px;
       font-weight: 400;
       color: rgba(255, 255, 255, 0.35)
-    }
-
-    /* CONTACT */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      max-width: 800px;
-      margin: 0 auto
-    }
-
-    .contact-info-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--cm-dark);
-      margin-bottom: 16px;
-      text-align: left;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 16px
-    }
-
-    .contact-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: var(--cm-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0
-    }
-
-    .contact-icon i,
-    .contact-icon svg {
-      font-size: 16px;
-      color: var(--cm-green);
-      width: 16px;
-      height: 16px;
-    }
-
-    .contact-label {
-      font-size: 11px;
-      color: var(--cm-muted);
-      margin-bottom: 2px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em
-    }
-
-    .contact-value {
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--cm-text)
-    }
-
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 4px
-    }
-
-    .cf-field {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      margin-bottom: 8px;
-    }
-
-    .cf-input {
-      background: var(--cm-bg);
-      border: 1.5px solid var(--cm-border);
-      border-radius: 10px;
-      padding: 11px 14px;
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--cm-text);
-      width: 100%;
-      font-family: var(--font-sans);
-      transition: border-color 0.15s, box-shadow 0.15s;
-    }
-
-    .cf-input:focus {
-      outline: none;
-      border-color: var(--cm-green);
-      box-shadow: 0 0 0 3px rgba(15, 123, 108, 0.12);
-    }
-
-    .cf-input.invalid {
-      border-color: #DC2626;
-    }
-
-    .cf-input.invalid:focus {
-      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
-    }
-
-    .cf-input.valid {
-      border-color: var(--cm-green);
-    }
-
-    .cf-input::placeholder {
-      color: var(--cm-muted)
-    }
-
-    .cf-textarea {
-      min-height: 90px;
-      resize: vertical
-    }
-
-    .cf-error {
-      font-size: 11px;
-      font-weight: 500;
-      color: #DC2626;
-      display: none;
-      align-items: center;
-      gap: 4px;
-      min-height: 14px;
-    }
-
-    .cf-error.show {
-      display: flex;
-    }
-
-    .cf-error i,
-    .cf-error svg {
-      font-size: 13px;
-      width: 13px;
-      height: 13px;
-    }
-
-    .cf-btn {
-      background: var(--cm-green);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      padding: 12px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      font-family: var(--font-sans);
-      margin-top: 6px;
-      transition: background 0.15s, opacity 0.15s;
-    }
-
-    .cf-btn:hover {
-      background: var(--cm-dark);
-    }
-
-    .cf-btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .cf-success {
-      display: none;
-      align-items: center;
-      gap: 8px;
-      background: var(--cm-light);
-      border: 1px solid var(--cm-green);
-      color: var(--cm-dark);
-      font-size: 13px;
-      font-weight: 500;
-      padding: 12px 14px;
-      border-radius: 10px;
-      margin-top: 6px;
-    }
-
-    .cf-success.show {
-      display: flex;
-    }
-
-    .cf-success i,
-    .cf-success svg {
-      color: var(--cm-green);
-      font-size: 18px;
-      flex-shrink: 0;
-      width: 18px;
-      height: 18px;
-    }
-
-    /* LEGAL */
-    .legal-note-grid {
-      max-width: 880px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-
-    .legal-card {
-      background: #fff;
-      border: 0.5px solid var(--cm-border);
-      border-radius: 18px;
-      padding: 28px 28px 26px;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .legal-card-head {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      margin-bottom: 20px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--cm-border);
-    }
-
-    .legal-card-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: var(--cm-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .legal-card-icon .icon {
-      width: 22px;
-      height: 22px;
-      color: var(--cm-green);
-    }
-
-    .legal-card-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--cm-dark);
-      margin-bottom: 3px;
-    }
-
-    .legal-card-meta {
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--cm-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .legal-points {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-bottom: 22px;
-      flex-grow: 1;
-    }
-
-    .legal-points li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--cm-sub);
-      line-height: 1.55;
-    }
-
-    .legal-points li .icon {
-      width: 17px;
-      height: 17px;
-      color: var(--cm-green);
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .legal-points li b {
-      color: var(--cm-dark);
-      font-weight: 600;
-    }
-
-    .legal-card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--cm-green);
-      align-self: flex-start;
-      padding-top: 4px;
-    }
-
-    .legal-card-link .icon {
-      width: 15px;
-      height: 15px;
-      transition: transform 0.15s;
-    }
-
-    .legal-card-link:hover .icon {
-      transform: translateX(3px);
     }
 
     /* FOOTER */
@@ -1323,8 +832,7 @@
       transition: color 0.15s
     }
 
-    .footer-link i,
-    .footer-link svg {
+    .footer-link i {
       font-size: 15px;
       width: 15px;
       height: 15px;
@@ -1371,14 +879,6 @@
     .fade-up.visible {
       opacity: 1;
       transform: translateY(0)
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .fade-up {
-        opacity: 1;
-        transform: none;
-        transition: none;
-      }
     }
 
     /* ============ RESPONSIVE ============ */
@@ -1460,35 +960,8 @@
         padding: 24px;
       }
 
-      .problem-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .btab-content.active {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .flow-steps {
-        flex-wrap: wrap;
-      }
-
-      .flow-step {
-        flex: 1 1 33%;
-        min-width: 150px;
-        margin-bottom: 28px;
-      }
-
-      .flow-connector {
-        display: none;
-      }
-
       .features-grid {
         grid-template-columns: 1fr 1fr;
-      }
-
-      .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 36px;
       }
     }
 
@@ -1555,27 +1028,6 @@
         font-size: 9.5px;
       }
 
-      .benefits-tabs {
-        gap: 6px;
-      }
-
-      .btab {
-        padding: 8px 14px;
-        font-size: 12px;
-        flex: 1 1 auto;
-        justify-content: center;
-      }
-
-      .btab-content.active {
-        grid-template-columns: 1fr;
-      }
-
-      .flow-step {
-        flex: 1 1 100%;
-        max-width: 320px;
-        margin: 0 auto 28px;
-      }
-
       .features-grid {
         grid-template-columns: 1fr;
       }
@@ -1596,10 +1048,6 @@
         width: 100%;
       }
 
-      .contact-grid {
-        gap: 32px;
-      }
-
       .footer {
         padding: 36px 20px 20px;
       }
@@ -1616,10 +1064,6 @@
         flex-direction: column;
         align-items: flex-start;
       }
-
-      .legal-note-grid {
-        grid-template-columns: 1fr !important;
-      }
     }
 
     @media (max-width: 380px) {
@@ -1633,7 +1077,7 @@
 <body>
   <!-- NAV -->
   <nav class="nav">
-    <button class="nav-logo" id="logoHomeTop" aria-label="ClassMitra home, scroll to top">
+    <button class="nav-logo" id="logoHomeTop" aria-label="ClassMitra home">
       <div class="nav-logo-mark"><img src="CMLogo.png" alt="ClassMitra logo"></div>
       <span class="nav-logo-text">Class<span class="logo-highlight">Mitra</span></span>
     </button>
@@ -1679,7 +1123,6 @@
             <div class="btn-store-main">Google Play</div>
           </div>
         </a>
-
         <a href="#" class="btn-store">
           <i class="fa-brands fa-apple"></i>
           <div>
@@ -1690,9 +1133,10 @@
       </div>
     </div>
 
-    <!-- FAN SCREENSHOT DISPLAY -->
+    <!-- CAROUSEL -->
     <div class="hero-fan fade-up" id="hero-fan" style="transition-delay:0.2s">
       <div class="fan-stage" id="fanStage"></div>
+      <div class="carousel-controls" id="carouselControls"></div>
     </div>
   </section>
 
@@ -1716,381 +1160,13 @@
     </div>
   </div>
 
-  <!-- PROBLEM SECTION -->
-  <section class="section section-alt section-center" id="problem">
-    <div class="section-eyebrow">The problem we solve</div>
-    <div class="section-title">Every Indian parent knows this <span>daily struggle</span></div>
-    <div class="section-sub">Children forget homework. Parents ask friends on WhatsApp. Photos get lost. Teachers look
-      unprofessional. We fix all of this.</div>
-    <div class="problem-grid fade-up" id="problems">
-      <div class="problem-card">
-        <svg class="icon problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="9" />
-          <path d="M12 8v4" />
-          <path d="M12 16h.01" />
-        </svg>
-        <div>
-          <div class="problem-title">"Homework kya hai?"</div>
-          <div class="problem-text">Kids forget to note homework. Parents call other parents every evening. Stress and
-            confusion daily.</div>
-        </div>
-      </div>
-      <div class="problem-card solved">
-        <svg class="icon problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="9" />
-          <path d="M8.5 12.5l2.5 2.5 5-5.5" />
-        </svg>
-        <div>
-          <div class="problem-title">Homework delivered instantly</div>
-          <div class="problem-text">Teacher posts → parent sees exact homework in 2 seconds. Push notification +
-            WhatsApp both.</div>
-        </div>
-      </div>
-      <div class="problem-card">
-        <svg class="icon problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path
-            d="M9 9a.5.5 0 0 0 .5.5h.5a.5.5 0 0 0 .5-.5V9c0-.3.2-.6.5-.7.3 0 .6.2.7.5l.5 1.5c.1.3 0 .6-.2.8l-.5.5c-.2.2-.2.5 0 .8 1 1.5 2.4 2.9 3.9 3.9.3.2.6.2.8 0l.5-.5c.2-.2.5-.3.8-.2l1.5.5c.3.1.5.4.5.7 0 .3-.3.5-.6.5" />
-          <path d="M12 21a9 9 0 1 0-7.6-4.1L3 21l4.3-1.1A9 9 0 0 0 12 21z" />
-        </svg>
-        <div>
-          <div class="problem-title">WhatsApp chaos</div>
-          <div class="problem-text">Homework buried in 200 messages. Wrong photos. Group confusion. Nothing organized.
-          </div>
-        </div>
-      </div>
-      <div class="problem-card solved">
-        <svg class="icon problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="9" />
-          <path d="M8.5 12.5l2.5 2.5 5-5.5" />
-        </svg>
-        <div>
-          <div class="problem-title">Organized homework feed</div>
-          <div class="problem-text">Subject-wise, date-wise, searchable. Individual homework for specific students
-            highlighted separately.</div>
-        </div>
-      </div>
-      <div class="problem-card">
-        <svg class="icon problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="4" y="3" width="16" height="18" rx="2" />
-          <path d="M8 3v18" />
-          <path d="M11 8h6" />
-          <path d="M11 12h6" />
-          <path d="M11 16h4" />
-        </svg>
-        <div>
-          <div class="problem-title">Notebook attendance & fees</div>
-          <div class="problem-text">Teachers track everything manually. Fees pending, attendance missed. Completely
-            unscalable.</div>
-        </div>
-      </div>
-      <div class="problem-card solved">
-        <svg class="icon problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="9" />
-          <path d="M8.5 12.5l2.5 2.5 5-5.5" />
-        </svg>
-        <div>
-          <div class="problem-title">Digital tracking</div>
-          <div class="problem-text">One-tap attendance, auto fee reminders, digital receipts. Teacher looks
-            professional. Parents trust more.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="section section-center" id="how">
-    <div class="section-eyebrow">How it works</div>
-    <div class="section-title">Simple for teachers,<br><span>powerful for parents</span></div>
-    <div class="section-sub">ClassMitra works as a mobile app. Teacher pays ₹99/month. Parents join free. Everything
-      works in 4 simple steps.</div>
-    <div class="flow-steps fade-up" id="flow">
-      <div class="flow-step">
-        <div class="flow-step-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="9" cy="8" r="3.5" />
-            <path d="M3.5 20c0-3.5 2.5-6 5.5-6s5.5 2.5 5.5 6" />
-            <path d="M18 8v5" />
-            <path d="M15.5 10.5h5" />
-          </svg></div>
-        <div class="flow-step-num">1</div>
-        <div class="flow-step-title">Teacher signs up</div>
-        <div class="flow-step-text">Phone OTP login. Create profile, add subjects, set up batches in 5 minutes.</div>
-        <div class="flow-connector"></div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-step-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="9" cy="8" r="3" />
-            <path d="M3.5 19.5c0-3.3 2.4-6 5.5-6s5.5 2.7 5.5 6" />
-            <circle cx="17.5" cy="9.5" r="2.2" />
-            <path d="M15.8 13.5c1.9.4 3.2 2.3 3.2 5" />
-          </svg></div>
-        <div class="flow-step-num">2</div>
-        <div class="flow-step-title">Add students</div>
-        <div class="flow-step-text">Add student name + parent phone. Parents get WhatsApp invite to join ClassMitra
-          free.</div>
-        <div class="flow-connector"></div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-step-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="4" y="3" width="16" height="18" rx="2" />
-            <path d="M8 3v18" />
-            <path d="M11 8h6" />
-            <path d="M11 12h6" />
-            <path d="M11 16h4" />
-          </svg></div>
-        <div class="flow-step-num">3</div>
-        <div class="flow-step-title">Post homework daily</div>
-        <div class="flow-step-text">Text or photo. Send to all students or just one specific child. Takes 30 seconds.
-        </div>
-        <div class="flow-connector"></div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-step-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M10 19a2 2 0 1 0 4 0" />
-            <path d="M6 9a6 6 0 1 1 12 0c0 3 1 4 1.5 5.5C20 16 19 17 17 17H7c-2 0-3-1-1.5-2.5C6 13 6 12 6 9" />
-          </svg></div>
-        <div class="flow-step-num">4</div>
-        <div class="flow-step-title">Parents notified</div>
-        <div class="flow-step-text">Push notification + WhatsApp instantly. Parent opens app, sees exact homework, done.
-        </div>
-        <div class="flow-connector"></div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-step-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M3 20h18" />
-            <path d="M4 16l4-5 4 3 6-8" />
-          </svg></div>
-        <div class="flow-step-num">5</div>
-        <div class="flow-step-title">Track everything</div>
-        <div class="flow-step-text">Attendance, fees, marks, notices — all in one place. Teacher runs a professional
-          operation.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BENEFITS TABS -->
-  <section class="section section-alt" id="features">
-    <div class="section-center" style="margin-bottom:0">
-      <div class="section-eyebrow">Who benefits</div>
-      <div class="section-title">Built for <span>every role</span> in the classroom</div>
-    </div>
-    <div class="benefits-tabs">
-      <button class="btab active" onclick="showTab('teacher', this)"><svg class="icon" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="4" width="18" height="12" rx="1" />
-          <path d="M8 20h8" />
-          <path d="M10 16v4" />
-          <path d="M14 16v4" />
-          <path d="M7 8h6" />
-        </svg> Teacher</button>
-      <button class="btab" onclick="showTab('parent', this)"><svg class="icon" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="8.5" cy="8" r="3" />
-          <path d="M3.5 19c0-3 2.2-5.5 5-5.5s5 2.5 5 5.5" />
-          <circle cx="17" cy="9" r="2.5" />
-          <path d="M15 13.2c2 .3 3.5 2.2 3.5 4.8" />
-        </svg> Parent</button>
-      <button class="btab" onclick="showTab('student', this)"><svg class="icon" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 3l9 5-9 5-9-5z" />
-          <path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5" />
-          <path d="M21 8v6" />
-        </svg> Student</button>
-    </div>
-    <div id="tab-teacher" class="btab-content active">
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="4" y="3" width="16" height="18" rx="2" />
-            <path d="M8 3v18" />
-            <path d="M11 8h6" />
-            <path d="M11 12h6" />
-            <path d="M11 16h4" />
-          </svg></div>
-        <div class="benefit-title">Post homework fast</div>
-        <div class="benefit-text">Type or photo. Group homework or individual for specific students. WhatsApp auto-sends
-          to all parents.</div>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="3" y="5" width="18" height="16" rx="2" />
-            <path d="M3 10h18" />
-            <path d="M8 3v4" />
-            <path d="M16 3v4" />
-            <path d="M9 15l2 2 4-4" />
-          </svg></div>
-        <div class="benefit-title">One-tap attendance</div>
-        <div class="benefit-text">Mark P/A/L per student. Absent parent auto-notified. Monthly calendar view. No more
-          register book.</div>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="9" />
-            <path d="M9 8h6" />
-            <path d="M9 8c2.5 0 4 1 4 2.5S11.5 13 9 13" />
-            <path d="M9 13h6l-5 5" />
-          </svg></div>
-        <div class="benefit-title">Fees without stress</div>
-        <div class="benefit-text">See who paid, who hasn't. Auto reminders. Digital receipts. Never chase fees on
-          WhatsApp again.</div>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M3 11v2a2 2 0 0 0 2 2h1l3 4v-6" />
-            <path d="M9 9l9-4v14l-9-4" />
-            <path d="M18 9.5a3 3 0 0 1 0 5" />
-          </svg></div>
-        <div class="benefit-title">Instant notices</div>
-        <div class="benefit-text">Holiday, test, timing change — tap once, all parents notified via app + WhatsApp
-          simultaneously.</div>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 3l2.5 5.5 6 .8-4.3 4.2 1 6-5.2-3-5.2 3 1-6L3.5 9.3l6-.8z" />
-          </svg></div>
-        <div class="benefit-title">Look professional</div>
-        <div class="benefit-text">Parents see an organized, digital teacher. Build trust. Get referrals. Grow your
-          tuition business.</div>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="3.5" y="3.5" width="7" height="7" rx="1" />
-            <rect x="13.5" y="3.5" width="7" height="7" rx="1" />
-            <rect x="3.5" y="13.5" width="7" height="7" rx="1" />
-            <rect x="13.5" y="13.5" width="7" height="7" rx="1" />
-          </svg></div>
-        <div class="benefit-title">Manage multiple batches</div>
-        <div class="benefit-text">Morning batch, evening batch, different standards — all in one dashboard. Separate
-          tracking per batch.</div>
-      </div>
-    </div>
-    <div id="tab-parent" class="btab-content">
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 11l8-7 8 7" />
-            <path d="M6 10v9h12v-9" />
-            <path d="M10 19v-5h4v5" />
-          </svg></div>
-        <div class="benefit-title">Today's homework at a glance</div>
-        <div class="benefit-text">Open app, see exact homework for your child. Subject-wise. Never ask "homework kya
-          hai?" again.</div>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="9" cy="8" r="3.5" />
-            <path d="M3.5 20c0-3.5 2.5-6 5.5-6s5.5 2.5 5.5 6" />
-            <path d="M16.5 13.5l1.5 1.5 3-3.5" />
-          </svg></div>
-        <div class="benefit-title">Individual homework alert</div>
-        <div class="benefit-text">If teacher gives your child specific extra homework, you get a separate alert. Only
-          you, not all parents.</div>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="3" y="5" width="18" height="16" rx="2" />
-            <path d="M3 10h18" />
-            <path d="M8 3v4" />
-            <path d="M16 3v4" />
-          </svg></div>
-        <div class="benefit-title">Attendance calendar</div>
-        <div class="benefit-text">See your child's monthly attendance visually. Green = present, red = absent. Know
-          every day.</div>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 3h14v18l-2.5-1.5L14 21l-2.5-1.5L9 21l-2.5-1.5L5 21V3z" />
-            <path d="M9 8h6" />
-            <path d="M9 12h6" />
-          </svg></div>
-        <div class="benefit-title">Fees & receipts</div>
-        <div class="benefit-text">Check if fees is paid. Download digital receipt. See payment history. All in one
-          place.</div>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M10 19a2 2 0 1 0 4 0" />
-            <path d="M6 9a6 6 0 1 1 12 0c0 3 1 4 1.5 5.5C20 16 19 17 17 17H7c-2 0-3-1-1.5-2.5C6 13 6 12 6 9" />
-          </svg></div>
-        <div class="benefit-title">Real-time notifications</div>
-        <div class="benefit-text">Push + WhatsApp for every homework, notice, holiday, exam date. Never miss anything.
-        </div>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" />
-            <path d="M9 12l2 2 4-4.5" />
-          </svg></div>
-        <div class="benefit-title">Peace of mind</div>
-        <div class="benefit-text">Know exactly what's happening in your child's tuition class every single day.</div>
-      </div>
-    </div>
-    <div id="tab-student" class="btab-content">
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="4" y="3" width="16" height="18" rx="2" />
-            <path d="M8 3v18" />
-            <path d="M11 8h6" />
-            <path d="M11 12h6" />
-            <path d="M11 16h4" />
-          </svg></div>
-        <div class="benefit-title">Never forget homework</div>
-        <div class="benefit-text">Your parent has the homework on their phone. No more "I forgot what teacher said."
-        </div>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="8.5" />
-            <circle cx="12" cy="12" r="5" />
-            <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" />
-          </svg></div>
-        <div class="benefit-title">Personal homework</div>
-        <div class="benefit-text">If teacher gives you special practice based on your level, it's marked separately just
-          for you.</div>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 20V10" />
-            <path d="M10 20V4" />
-            <path d="M16 20v-7" />
-            <path d="M3 20h18" />
-          </svg></div>
-        <div class="benefit-title">See your progress</div>
-        <div class="benefit-text">Attendance, marks, subjects — all tracked. See how you're improving over time.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES DEEP DIVE -->
+  <!-- FEATURES SECTION -->
   <section class="section" id="feature-detail">
     <div class="section-center" style="margin-bottom:40px">
       <div class="section-eyebrow">Core features</div>
       <div class="section-title">Everything a tuition class <span>needs to run</span></div>
     </div>
-    <div class="features-grid fade-up" id="feat-grid">
+    <div class="features-grid fade-up">
       <div class="feature-card">
         <div class="fc-tag">Homework</div>
         <svg class="icon fc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
@@ -2104,20 +1180,6 @@
         <div class="fc-title">Smart homework delivery</div>
         <div class="fc-text">Post once, all parents notified. Supports text, notebook photos, and individual student
           homework.</div>
-        <div class="fc-items">
-          <div class="fc-item">
-            <div class="fc-item-dot"></div>Group homework for entire batch
-          </div>
-          <div class="fc-item">
-            <div class="fc-item-dot"></div>Individual homework for one child
-          </div>
-          <div class="fc-item">
-            <div class="fc-item-dot"></div>Homework photo upload
-          </div>
-          <div class="fc-item">
-            <div class="fc-item-dot"></div>Subject-wise organization
-          </div>
-        </div>
       </div>
       <div class="feature-card amber">
         <div class="fc-tag">Attendance</div>
@@ -2132,17 +1194,6 @@
         <div class="fc-title">Digital attendance</div>
         <div class="fc-text">Mark Present / Absent / Late with one tap. Absent students' parents notified immediately.
         </div>
-        <div class="fc-items">
-          <div class="fc-item">
-            <div class="fc-item-dot" style="background:var(--cm-amber)"></div>Monthly attendance calendar
-          </div>
-          <div class="fc-item">
-            <div class="fc-item-dot" style="background:var(--cm-amber)"></div>Batch-wise tracking
-          </div>
-          <div class="fc-item">
-            <div class="fc-item-dot" style="background:var(--cm-amber)"></div>Auto parent notification on absent
-          </div>
-        </div>
       </div>
       <div class="feature-card">
         <div class="fc-tag">Fees</div>
@@ -2155,22 +1206,7 @@
           <path d="M9 13h6l-5 5" />
         </svg>
         <div class="fc-title">Fees management</div>
-        <div class="fc-text">Track paid and pending fees per student per month. Auto reminders. Digital receipts
-          generated.</div>
-        <div class="fc-items">
-          <div class="fc-item">
-            <div class="fc-item-dot"></div>Month-wise fee tracking
-          </div>
-          <div class="fc-item">
-            <div class="fc-item-dot"></div>Auto reminder to pending parents
-          </div>
-          <div class="fc-item">
-            <div class="fc-item-dot"></div>Digital receipt on payment
-          </div>
-          <div class="fc-item">
-            <div class="fc-item-dot"></div>Payment history
-          </div>
-        </div>
+        <div class="fc-text">Track paid and pending fees per student. Auto reminders. Digital receipts generated.</div>
       </div>
       <div class="feature-card amber">
         <div class="fc-tag">Communication</div>
@@ -2182,17 +1218,6 @@
         </svg>
         <div class="fc-title">Instant notices</div>
         <div class="fc-text">Send holiday alerts, test schedules, timing changes to all parents in seconds.</div>
-        <div class="fc-items">
-          <div class="fc-item">
-            <div class="fc-item-dot" style="background:var(--cm-amber)"></div>Holiday announcements
-          </div>
-          <div class="fc-item">
-            <div class="fc-item-dot" style="background:var(--cm-amber)"></div>Exam schedule alerts
-          </div>
-          <div class="fc-item">
-            <div class="fc-item-dot" style="background:var(--cm-amber)"></div>WhatsApp + push notifications
-          </div>
-        </div>
       </div>
       <div class="feature-card">
         <div class="fc-tag">Students</div>
@@ -2204,19 +1229,7 @@
           <path d="M15 13.2c2 .3 3.5 2.2 3.5 4.8" />
         </svg>
         <div class="fc-title">Student management</div>
-        <div class="fc-text">Manage all students across multiple batches. Student profiles with attendance, fees, and
-          homework history.</div>
-        <div class="fc-items">
-          <div class="fc-item">
-            <div class="fc-item-dot"></div>Multiple batch management
-          </div>
-          <div class="fc-item">
-            <div class="fc-item-dot"></div>Student profile with full history
-          </div>
-          <div class="fc-item">
-            <div class="fc-item-dot"></div>WhatsApp parent invite
-          </div>
-        </div>
+        <div class="fc-text">Manage all students across multiple batches with complete profile history.</div>
       </div>
       <div class="feature-card amber">
         <div class="fc-tag">Progress</div>
@@ -2228,22 +1241,7 @@
           <path d="M20 19V3" />
         </svg>
         <div class="fc-title">Progress tracking</div>
-        <div class="fc-text">See how each child is improving over time — not just attendance, but real academic growth.
-        </div>
-        <div class="fc-items">
-          <div class="fc-item">
-            <div class="fc-item-dot" style="background:var(--cm-amber)"></div>Test & exam marks logged per subject
-          </div>
-          <div class="fc-item">
-            <div class="fc-item-dot" style="background:var(--cm-amber)"></div>Visual trend line parents can follow
-          </div>
-          <div class="fc-item">
-            <div class="fc-item-dot" style="background:var(--cm-amber)"></div>Teacher remarks tied to each result
-          </div>
-          <div class="fc-item">
-            <div class="fc-item-dot" style="background:var(--cm-amber)"></div>Shareable progress summary, anytime
-          </div>
-        </div>
+        <div class="fc-text">See how each child is improving over time with academic growth tracking.</div>
       </div>
     </div>
   </section>
@@ -2272,232 +1270,11 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section class="section" id="contact">
-    <div class="section-center" style="margin-bottom:40px">
-      <div class="section-eyebrow">Contact us</div>
-      <div class="section-title">We're here to <span>help you</span></div>
-    </div>
-    <div class="contact-grid">
-      <div>
-        <div class="contact-info-title">Get in touch</div>
-        <div class="contact-item">
-          <div class="contact-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="3" y="5" width="18" height="14" rx="2" />
-              <path d="M3 7l9 6 9-6" />
-            </svg></div>
-          <div>
-            <div class="contact-label">Email</div>
-            <div class="contact-value">hello@classmitra.in</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path
-                d="M9 9a.5.5 0 0 0 .5.5h.5a.5.5 0 0 0 .5-.5V9c0-.3.2-.6.5-.7.3 0 .6.2.7.5l.5 1.5c.1.3 0 .6-.2.8l-.5.5c-.2.2-.2.5 0 .8 1 1.5 2.4 2.9 3.9 3.9.3.2.6.2.8 0l.5-.5c.2-.2.5-.3.8-.2l1.5.5c.3.1.5.4.5.7 0 .3-.3.5-.6.5" />
-              <path d="M12 21a9 9 0 1 0-7.6-4.1L3 21l4.3-1.1A9 9 0 0 0 12 21z" />
-            </svg></div>
-          <div>
-            <div class="contact-label">WhatsApp support</div>
-            <div class="contact-value">+91 98765 00000</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z" />
-              <circle cx="12" cy="9" r="2.5" />
-            </svg></div>
-          <div>
-            <div class="contact-label">Location</div>
-            <div class="contact-value">Mumbai, Maharashtra, India</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M12 7v5l3 2" />
-            </svg></div>
-          <div>
-            <div class="contact-label">Support hours</div>
-            <div class="contact-value">Mon–Sat, 9 AM – 7 PM IST</div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <form class="contact-form" id="contactForm" novalidate>
-          <div class="cf-field">
-            <input class="cf-input" type="text" id="cf-name" placeholder="Your name" autocomplete="name" />
-            <div class="cf-error" id="cf-name-error"><svg class="icon" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-                aria-hidden="true">
-                <circle cx="12" cy="12" r="9" />
-                <path d="M12 8v4" />
-                <path d="M12 16h.01" />
-              </svg><span>Please enter your name</span></div>
-          </div>
-          <div class="cf-field">
-            <input class="cf-input" type="email" id="cf-email" placeholder="Email address" autocomplete="email"
-              inputmode="email" />
-            <div class="cf-error" id="cf-email-error"><svg class="icon" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-                aria-hidden="true">
-                <circle cx="12" cy="12" r="9" />
-                <path d="M12 8v4" />
-                <path d="M12 16h.01" />
-              </svg><span>Enter a valid email, like name@example.com</span></div>
-          </div>
-          <div class="cf-field">
-            <input class="cf-input" type="tel" id="cf-phone" placeholder="+91 mobile number" autocomplete="tel"
-              inputmode="numeric" maxlength="13" />
-            <div class="cf-error" id="cf-phone-error"><svg class="icon" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-                aria-hidden="true">
-                <circle cx="12" cy="12" r="9" />
-                <path d="M12 8v4" />
-                <path d="M12 16h.01" />
-              </svg><span>Enter a valid 10-digit Indian mobile number</span></div>
-          </div>
-          <div class="cf-field">
-            <select class="cf-input" id="cf-role" style="color:var(--cm-muted)">
-              <option value="">I am a...</option>
-              <option value="teacher" style="color:var(--cm-text)">Teacher</option>
-              <option value="parent" style="color:var(--cm-text)">Parent</option>
-              <option value="other" style="color:var(--cm-text)">Other</option>
-            </select>
-          </div>
-          <div class="cf-field">
-            <textarea class="cf-input cf-textarea" id="cf-message" placeholder="How can we help you?"></textarea>
-            <div class="cf-error" id="cf-message-error"><svg class="icon" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-                aria-hidden="true">
-                <circle cx="12" cy="12" r="9" />
-                <path d="M12 8v4" />
-                <path d="M12 16h.01" />
-              </svg><span>Please tell us how we can help</span></div>
-          </div>
-          <button class="cf-btn" type="submit">Send message</button>
-          <div class="cf-success" id="cf-success"><svg class="icon" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-              aria-hidden="true">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M8.5 12.5l2.5 2.5 5-5.5" />
-            </svg><span>Thanks! We'll get back to you within a day.</span></div>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- TERMS & PRIVACY -->
-  <section class="section section-alt" id="terms">
-    <div class="section-center" style="margin-bottom:40px">
-      <div class="section-eyebrow">Legal</div>
-      <div class="section-title">Terms & <span>Privacy</span></div>
-      <div class="section-sub" style="margin-bottom:0">The short, plain-language version. Full documents available on
-        request.</div>
-    </div>
-    <div class="legal-note-grid">
-      <div class="legal-card">
-        <div class="legal-card-head">
-          <div class="legal-card-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M9 12h6" />
-              <path d="M9 16h6" />
-              <path d="M7 4h10a2 2 0 0 1 2 2v13l-3-2-3 2-3-2-3 2V6a2 2 0 0 1 2-2z" />
-            </svg></div>
-          <div>
-            <div class="legal-card-title">Terms & Conditions</div>
-            <div class="legal-card-meta">Last updated: June 2026</div>
-          </div>
-        </div>
-        <ul class="legal-points">
-          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M8.5 12.5l2.5 2.5 5-5.5" />
-            </svg><span>ClassMitra is for lawful, educational communication between teachers, parents and students
-              only.</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M8.5 12.5l2.5 2.5 5-5.5" />
-            </svg><span>Teacher subscriptions bill monthly or annually, and can be cancelled anytime — no
-              lock-in.</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M8.5 12.5l2.5 2.5 5-5.5" />
-            </svg><span>Homework, attendance and fee records are the responsibility of the teacher posting them.</span>
-          </li>
-          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M8.5 12.5l2.5 2.5 5-5.5" />
-            </svg><span>Accounts found misusing the platform may be suspended.</span></li>
-        </ul>
-        <a href="terms.html" class="legal-card-link">Read the full terms <svg class="icon" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-            aria-hidden="true">
-            <path d="M5 12h14" />
-            <path d="M13 6l6 6-6 6" />
-          </svg></a>
-      </div>
-      <div class="legal-card">
-        <div class="legal-card-head">
-          <div class="legal-card-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" />
-              <path d="M9 12l2 2 4-4.5" />
-            </svg></div>
-          <div>
-            <div class="legal-card-title">Privacy Policy</div>
-            <div class="legal-card-meta">Last updated: June 2026</div>
-          </div>
-        </div>
-        <ul class="legal-points">
-          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M8.5 12.5l2.5 2.5 5-5.5" />
-            </svg><span>We collect only what's needed: phone number, student name, parent contact and homework
-              content.</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M8.5 12.5l2.5 2.5 5-5.5" />
-            </svg><span><b>We never sell your data</b> to advertisers or third parties, under any circumstance.</span>
-          </li>
-          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M8.5 12.5l2.5 2.5 5-5.5" />
-            </svg><span>All data is stored securely on Firebase (Google Cloud). WhatsApp alerts are opt-in only.</span>
-          </li>
-          <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M8.5 12.5l2.5 2.5 5-5.5" />
-            </svg><span>Parents can request full data deletion anytime by contacting us. Compliant with IT Act 2000 &
-              DPDP Act 2023.</span></li>
-        </ul>
-        <a href="privacy.html" class="legal-card-link">Read the full policy <svg class="icon" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-            aria-hidden="true">
-            <path d="M5 12h14" />
-            <path d="M13 6l6 6-6 6" />
-          </svg></a>
-      </div>
-    </div>
-  </section>
-
   <!-- FOOTER -->
-  <footer class="footer" id="privacy">
+  <footer class="footer">
     <div class="footer-top">
       <div>
-        <button class="footer-brand-btn" id="logoHomeBottom" aria-label="ClassMitra home, scroll to top">
+        <button class="footer-brand-btn" id="logoHomeBottom" aria-label="ClassMitra home">
           <div class="footer-logo-mark"><img src="CMLogo.png" alt="ClassMitra logo"></div>
           <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:5px">Class<span
               style="color:var(--cm-amber)">Mitra</span></div>
@@ -2515,7 +1292,6 @@
         <a class="footer-link" href="#contact">Contact us</a>
         <a class="footer-link" href="terms.html">Terms & conditions</a>
         <a class="footer-link" href="privacy.html">Privacy policy</a>
-        <a class="footer-link" href="delete-account.html">Delete an account</a>
       </div>
       <div>
         <div class="footer-links-title">Download</div>
@@ -2535,8 +1311,7 @@
 
   <script>
     /* ============================================================
-       FAN SCREENSHOT LAYOUT — auto-rotating, no dots/buttons
-       5 cards fanned out; center = active, rotates every 3s
+       CAROUSEL: PROGRESSIVE FADING + DOTS NAVIGATION
     ============================================================ */
     const fanScreens = [
       {
@@ -2694,12 +1469,23 @@
     }
 
     const stage = document.getElementById('fanStage');
+    const controlsContainer = document.getElementById('carouselControls');
     const cards = [];
 
     for (let i = 0; i < TOTAL; i++) {
       const card = buildCard(i);
       cards.push(card);
       stage.appendChild(card);
+
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', `Show ${fanScreens[i].label}`);
+      dot.addEventListener('click', () => {
+        fanCenter = i;
+        applySlots();
+        updateDots();
+      });
+      controlsContainer.appendChild(dot);
     }
 
     function applySlots() {
@@ -2716,16 +1502,22 @@
       }
     }
 
+    function updateDots() {
+      const dots = controlsContainer.querySelectorAll('.carousel-dot');
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === fanCenter);
+      });
+    }
+
     applySlots();
 
     setInterval(() => {
       fanCenter = (fanCenter + 1) % TOTAL;
       applySlots();
-    }, 2800);
+      updateDots();
+    }, 3500);
 
-    /* ============================================================
-       NAV TOGGLE
-    ============================================================ */
+    /* NAV TOGGLE */
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
 
@@ -2741,79 +1533,25 @@
       });
     });
 
-    /* ============================================================
-       LOGO CLICK -> SCROLL TO TOP
-    ============================================================ */
+    /* LOGO SCROLL TO TOP */
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     document.getElementById('logoHomeTop').addEventListener('click', scrollToTop);
     document.getElementById('logoHomeBottom').addEventListener('click', scrollToTop);
 
-    /* ============================================================
-       FADE-UP OBSERVER
-    ============================================================ */
+    /* FADE UP ANIMATION */
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
     }, { threshold: 0.1 });
+
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     setTimeout(() => {
       document.getElementById('hero-txt').classList.add('visible');
       setTimeout(() => document.getElementById('hero-fan').classList.add('visible'), 200);
     }, 100);
-
-    /* ============================================================
-       TAB SWITCHER
-    ============================================================ */
-    function showTab(tab, btn) {
-      document.querySelectorAll('.btab').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.btab-content').forEach(c => c.classList.remove('active'));
-      document.getElementById('tab-' + tab).classList.add('active');
-      btn.classList.add('active');
-    }
-
-    /* ============================================================
-       CONTACT FORM VALIDATION
-    ============================================================ */
-    const form = document.getElementById('contactForm');
-    const nameInput = document.getElementById('cf-name');
-    const emailInput = document.getElementById('cf-email');
-    const phoneInput = document.getElementById('cf-phone');
-    const messageInput = document.getElementById('cf-message');
-    const successBox = document.getElementById('cf-success');
-
-    function setFieldState(input, errorId, isValid) {
-      const errorEl = document.getElementById(errorId);
-      if (isValid) { input.classList.remove('invalid'); input.classList.add('valid'); errorEl.classList.remove('show'); }
-      else { input.classList.remove('valid'); input.classList.add('invalid'); errorEl.classList.add('show'); }
-    }
-    function validateName() { const ok = nameInput.value.trim().length >= 2; setFieldState(nameInput, 'cf-name-error', ok); return ok; }
-    function validateEmail() { const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim()); setFieldState(emailInput, 'cf-email-error', ok); return ok; }
-    function validatePhone() { const raw = phoneInput.value.trim().replace(/[\s-]/g, '').replace(/^(\+91|91)/, ''); const ok = /^[6-9]\d{9}$/.test(raw); setFieldState(phoneInput, 'cf-phone-error', ok); return ok; }
-    function validateMessage() { const ok = messageInput.value.trim().length >= 5; setFieldState(messageInput, 'cf-message-error', ok); return ok; }
-
-    nameInput.addEventListener('blur', validateName);
-    emailInput.addEventListener('blur', validateEmail);
-    phoneInput.addEventListener('blur', validatePhone);
-    messageInput.addEventListener('blur', validateMessage);
-    nameInput.addEventListener('input', () => { if (nameInput.classList.contains('invalid')) validateName(); });
-    emailInput.addEventListener('input', () => { if (emailInput.classList.contains('invalid')) validateEmail(); });
-    phoneInput.addEventListener('input', () => { if (phoneInput.classList.contains('invalid')) validatePhone(); });
-    messageInput.addEventListener('input', () => { if (messageInput.classList.contains('invalid')) validateMessage(); });
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      successBox.classList.remove('show');
-      const ok = validateName() & validateEmail() & validatePhone() & validateMessage();
-      if (ok) {
-        successBox.classList.add('show');
-        form.reset();
-        [nameInput, emailInput, phoneInput, messageInput].forEach(el => el.classList.remove('valid', 'invalid'));
-      } else {
-        const firstInvalid = form.querySelector('.invalid');
-        if (firstInvalid) firstInvalid.focus();
-      }
-    });
   </script>
 </body>
 
